@@ -9,11 +9,23 @@ const Card = () => {
 
     const fetchQuote = async () => {
         setLoading(true)
-        const response = await fetch('https://api.quotable.io/random?minLength=100&maxLength=150')
-        const { author, content } = await response.json()
-        setAuthor(author)
-        setQuote(content)
-        setLoading(false)
+        try {
+            const response = await fetch('https://api.quotable.io/random?minLength=100&maxLength=200')
+            if (!response.ok)
+                throw response.status
+            const { author, content } = await response.json()
+            setAuthor(author)
+            setQuote(content)
+            setLoading(false)
+        }
+        catch (error) {
+            let errorMsg
+            if (error === 429)
+                errorMsg = 'Seems like the quote quota has expired.\nPlease try again later.'
+            else 
+                errorMsg = 'Something has gone wrong.\nPlease try again later.'
+            alert(`Oops! ${errorMsg}`)
+        }
     }
 
     useEffect(() => {
