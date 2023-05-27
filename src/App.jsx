@@ -1,10 +1,10 @@
+import Card from './components/Card'
+
 const App = () => {
   return (
-    <>
-      <h1 className="bg-red-500 text-4xl">
-        Test
-      </h1>
-    </>
+    <main className="flex justify-center items-center w-screen h-screen bg-gradient-to-br from-cyan-400 to-indigo-500">
+      <Card />
+    </main>
   )
 }
 
