@@ -36,7 +36,7 @@ const Card = () => {
     <article className="flex flex-col justify-center sm:justify-around items-center gap-y-4 sm:gap-y-5 w-10/12 max-w-xl p-6 sm:p-8 bg-white rounded-lg sm:rounded-2xl drop-shadow-2xl">
 
         {/* title */}
-        <div className="w-full text-center font-semibold text-xl sm:text-3xl">
+        <div className="w-full text-center font-medium text-xl sm:text-3xl">
             {
                 loading ?
                 <Loading className="w-1/2 h-6 m-auto" /> :
@@ -54,7 +54,7 @@ const Card = () => {
                     <Loading className="w-full h-3 mx-auto" />
                     <Loading className="w-3/4 h-3" /> 
                 </div> :
-                <p className="mb-3 text-gray-600 text-center font-light text-sm sm:text-lg">
+                <p className="mb-3 text-gray-600 text-center font-light text-sm sm:text-lg select-all">
                     {quote}
                 </p>
             }
@@ -71,11 +71,23 @@ const Card = () => {
         </div>
 
         {/* actions */}
-        {
-            !loading &&
-            <div className="w-full">
-            </div>
-        }
+        <div className="flex justify-between w-full h-10">
+            {
+                !loading && (
+                    <>
+                        <div>
+
+                        </div>
+
+                        <button
+                            className="py-2 px-5 bg-indigo-400 text-white rounded-md duration-300 hover:bg-indigo-500"
+                            onClick={fetchQuote}>
+                            New Quote
+                        </button>
+                    </>
+                )
+            }
+        </div>
 
     </article>
   )
