@@ -1,6 +1,8 @@
 import { useState, useEffect } from "react"
 
 import Loading from './Loading'
+import BaseButton from "./Button/Base"
+import IconButton from "./Button/Icon"
 
 const Card = () => {
     const [quote, setQuote] = useState(null)
@@ -28,6 +30,16 @@ const Card = () => {
         }
     }
 
+    const speakQuote = () => {
+        const speech = new SpeechSynthesisUtterance(quote)
+        const voice = speechSynthesis.getVoices().find(({name}) => name === 'Samantha')
+        speech.voice = voice
+        speech.volume = 0.6
+        speech.rate = 0.9
+        speech.pitch = 1.3
+        speechSynthesis.speak(speech)
+    }
+
     useEffect(() => {
         fetchQuote()
     },[])
@@ -40,7 +52,7 @@ const Card = () => {
             {
                 loading ?
                 <Loading className="w-1/2 h-6 m-auto" /> :
-                'Quotes of the day'
+                'Quote of the day'
             }
         </div>
 
@@ -71,19 +83,21 @@ const Card = () => {
         </div>
 
         {/* actions */}
-        <div className="flex justify-between w-full h-10">
+        <div className="flex justify-between items-end w-full h-10">
             {
                 !loading && (
                     <>
-                        <div>
-
+                        {/* icon actions */}
+                        <div className="flex gap-x-2">
+                            <IconButton icon="voice" handleClick={speakQuote} />
+                            <IconButton icon="clipboard" />
+                            <IconButton icon="share" />
                         </div>
 
-                        <button
-                            className="py-2 px-5 bg-indigo-400 text-white rounded-md duration-300 hover:bg-indigo-500"
-                            onClick={fetchQuote}>
+                        {/* new quote action */}
+                        <BaseButton handleClick={fetchQuote}>
                             New Quote
-                        </button>
+                        </BaseButton>
                     </>
                 )
             }
