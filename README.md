@@ -20,4 +20,5 @@ This will start the web app on a port in your local server.
 - [x] Fetch another quote
 - [x] Listen to quote
 - [x] Copy quote to clipboard
-- [ ] Share quote using the [Web Share API](https://developer.mozilla.org/en-US/docs/Web/API/Web_Share_API)
+- [x] Share using the [Web Share API](https://developer.mozilla.org/en-US/docs/Web/API/Web_Share_API)
+- [x] Show share option based on browser support

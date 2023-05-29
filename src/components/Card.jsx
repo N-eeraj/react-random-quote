@@ -8,6 +8,7 @@ const Card = () => {
     const [quote, setQuote] = useState(null)
     const [author, setAuthor] = useState(null)
     const [loading, setLoading] = useState(false)
+    const [canShare, setCanShare] = useState(true)
 
     const fetchQuote = async () => {
         setLoading(true)
@@ -60,6 +61,7 @@ const Card = () => {
     }
 
     useEffect(() => {
+        setCanShare(!!navigator.canShare)
         fetchQuote()
     },[])
 
@@ -110,7 +112,7 @@ const Card = () => {
                         <div className="flex gap-x-2">
                             <IconButton icon="voice" handleClick={speakQuote} />
                             <IconButton icon="clipboard" handleClick={copyQuote} />
-                            <IconButton icon="share" handleClick={shareWebsite} />
+                            { canShare && <IconButton icon="share" handleClick={shareWebsite} /> }
                         </div>
 
                         {/* new quote action */}
