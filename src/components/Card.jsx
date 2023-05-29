@@ -40,6 +40,16 @@ const Card = () => {
         speechSynthesis.speak(speech)
     }
 
+    const copyQuote = () => {
+        const dummy = document.createElement('textarea')
+        document.body.appendChild(dummy)
+        dummy.value = quote
+        dummy.select()
+        document.execCommand('copy')
+        document.body.removeChild(dummy)
+        alert('Copied Quote')
+    }
+
     useEffect(() => {
         fetchQuote()
     },[])
@@ -90,7 +100,7 @@ const Card = () => {
                         {/* icon actions */}
                         <div className="flex gap-x-2">
                             <IconButton icon="voice" handleClick={speakQuote} />
-                            <IconButton icon="clipboard" />
+                            <IconButton icon="clipboard" handleClick={copyQuote} />
                             <IconButton icon="share" />
                         </div>
 
