@@ -50,6 +50,15 @@ const Card = () => {
         alert('Copied Quote')
     }
 
+    const shareWebsite = async () => {
+        const shareData = {
+            title: 'Random Quote',
+            text: 'Here\'s a random quote for you.',
+            url: window.location.href
+        }
+        await navigator.share(shareData)
+    }
+
     useEffect(() => {
         fetchQuote()
     },[])
@@ -101,7 +110,7 @@ const Card = () => {
                         <div className="flex gap-x-2">
                             <IconButton icon="voice" handleClick={speakQuote} />
                             <IconButton icon="clipboard" handleClick={copyQuote} />
-                            <IconButton icon="share" />
+                            <IconButton icon="share" handleClick={shareWebsite} />
                         </div>
 
                         {/* new quote action */}
